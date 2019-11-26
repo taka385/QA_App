@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mCreateAccountListener: OnCompleteListener<AuthResult>
     private lateinit var mLoginListener: OnCompleteListener<AuthResult>
-    private lateinit var mDatabaseReference: DatabaseReference
+    private lateinit var mDataBaseReference: DatabaseReference
 
     //アカウント作成時にフラグを立て、ログイン処理後に名前をFirebaseに保存する
     private var mIsCreateAccount = false
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        mDatabaseReference = FirebaseDatabase.getInstance().reference
+        mDataBaseReference = FirebaseDatabase.getInstance().reference
 
         //FirebaseAuthのオブジェクトを取得する
         mAuth = FirebaseAuth.getInstance()
@@ -156,7 +156,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mCreateAccountListener)
     }
 
-    private fun createAccount(email: String, password: String) {
+    private fun login(email: String, password: String) {
         //ブログレスバーを表示する
         progressBar.visibility = View.VISIBLE
 

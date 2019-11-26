@@ -152,14 +152,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        //Firebase
         mDatabaseReference = FirebaseDatabase.getInstance().reference
 
         //ListViewの準備
         mListView = findViewById(R.id.listView)
-        mAdapter = QuestionDetailListAdapter(this)
+        mAdapter = QuestionsListAdapter(this)
         mQuestionArrayList = ArrayList<Question>()
-        mAdapter.notifDataSetChanged()
+        mAdapter.notifyDataSetChanged()
 
         mListView.setOnItemClickListener { parent, view, position, id ->
             //　Questionのインスタンスを渡して質問詳細画面を起動する
@@ -167,6 +166,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intent.putExtra("question", mQuestionArrayList[position])
             startActivity(intent)
         }
+
+    }
+    override fun onResume() {
+        super.onResume()
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+
+        // 1:趣味を既定の選択とする
+        if(mGenre == 0) {
+            onNavigationItemSelected(navigationView.menu.getItem(0))
+        }
+
 
     }
 
