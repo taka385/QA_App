@@ -176,8 +176,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(mGenre == 0) {
             onNavigationItemSelected(navigationView.menu.getItem(0))
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
